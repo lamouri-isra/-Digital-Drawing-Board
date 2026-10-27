@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sketchly Kids - Coloring Book</title>
+  <!-- style.css = shared design (same as the drawing board), coloring.css = extra styles for this page -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="coloring.css">
+  <script src="theme.js"></script>   <!-- night mode (shared) -->
+</head>
+<body>
+
+  <main class="app">
+
+    <!-- ===== HEADER ===== -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="logo">🖍️</div>
+        <div>
+          <h1>Sketchly Kids</h1>
+          <p>Coloring Book · pick a picture and make it colorful!</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a class="nav-link" href="index.html">🎨 Free Drawing</a>
+        <button id="themeBtn" class="icon-btn" title="Toggle dark mode">🌙</button>
+      </div>
+    </header>
+
+    <!-- ===== TOOLBAR ===== -->
+    <section id="toolbar">
+
+      <!-- Picture choice -->
+      <div class="group">
+        <span class="group-title">Picture</span>
+        <div class="segmented" id="pictureButtons">
+          <button data-picture="garden" class="active">🏡 Garden</button>
+          <button data-picture="ocean">🐠 Ocean</button>
+          <button data-picture="space">🚀 Space</button>
+        </div>
+      </div>
+
+      <!-- Tools -->
+      <div class="group">
+        <span class="group-title">Tool</span>
+        <div class="segmented">
+          <button id="fillBtn" class="active" title="Fill a shape (F)">🪣 Fill</button>
+          <button id="brushBtn" title="Brush (B)">🖌️ Brush</button>
+          <button id="eraserBtn" title="Eraser (E)">🧽 Delete</button>
+        </div>
+      </div>
+
+      <!-- Colors (big buttons for children) -->
+      <div class="group">
+        <span class="group-title">Color</span>
+        <div class="colors colors-big" id="palette">
+          <button class="swatch" data-color="#e63946" style="background:#e63946" title="Red"></button>
+          <button class="swatch" data-color="#f77f00" style="background:#f77f00" title="Orange"></button>
+          <button class="swatch" data-color="#ffd60a" style="background:#ffd60a" title="Yellow"></button>
+          <button class="swatch" data-color="#7ac74f" style="background:#7ac74f" title="Light green"></button>
+          <button class="swatch" data-color="#2a9d4f" style="background:#2a9d4f" title="Green"></button>
+          <button class="swatch" data-color="#4cc9f0" style="background:#4cc9f0" title="Sky blue"></button>
+          <button class="swatch" data-color="#2563eb" style="background:#2563eb" title="Blue"></button>
+          <button class="swatch" data-color="#8b5cf6" style="background:#8b5cf6" title="Purple"></button>
+          <button class="swatch" data-color="#ff7ab6" style="background:#ff7ab6" title="Pink"></button>
+          <button class="swatch" data-color="#8d5524" style="background:#8d5524" title="Brown"></button>
+          <button class="swatch" data-color="#9ca3af" style="background:#9ca3af" title="Gray"></button>
+          <button class="swatch" data-color="#111111" style="background:#111111" title="Black"></button>
+          <label class="custom-color" title="Pick any color">
+            <input type="color" id="colorPicker" value="#e63946">
+          </label>
+        </div>
+      </div>
+
+      <!-- Brush size (only used by Brush and Eraser) -->
+      <div class="group">
+        <span class="group-title">Brush size</span>
+        <div class="size-control">
+          <input type="range" id="sizeSlider" min="4" max="40" value="14">
+          <span id="sizeValue" class="badge">14 px</span>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="group">
+        <span class="group-title">Actions</span>
+        <div class="actions">
+          <button id="undoBtn" title="Undo (Ctrl+Z)">↩️ Undo</button>
+          <button id="resetBtn" class="danger" title="Start this picture again">🔄 Start over</button>
+          <button id="saveBtn" class="primary" title="Save as PNG">💾 Save</button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ===== THE PICTURE: two canvases stacked ===== -->
+    <section class="paper">
+      <div class="stack tool-fill" id="stack">
+        <canvas id="colorLayer"></canvas>  <!-- bottom: the colors -->
+        <canvas id="lineLayer"></canvas>   <!-- top: the black outlines (receives the mouse/touch) -->
+      </div>
+    </section>
+
+    <!-- ===== STATUS BAR ===== -->
+    <footer class="statusbar">
+      <div class="status-left">
+        <span class="dot"></span>
+        <span id="status">Choose a color, then tap inside a shape to fill it!</span>
+      </div>
+      <div class="status-right">
+        <span id="toolInfo" class="badge">Fill</span>
+        <span id="colorInfo" class="badge">Color</span>
+      </div>
+    </footer>
+
+  </main>
+
+  <div id="toast"></div>
+
+  <script src="pictures.js"></script>
+  <script src="coloring.js"></script>
+</body>
+</html>

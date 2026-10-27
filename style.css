@@ -1,0 +1,313 @@
+/* ---------- Theme colors (CSS variables) ---------- */
+:root {
+  --bg-1: #e0e7ff;
+  --bg-2: #fce7f3;
+  --card: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --soft: #f1f5f9;
+  --accent: #6366f1;
+  --accent-dark: #4f46e5;
+  --danger: #e11d48;
+  --shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+  color-scheme: light;
+}
+
+/* NIGHT MODE: theme.js puts data-theme="dark" on the <html> element.
+   Only the variables change, so the whole page changes color. */
+:root[data-theme="dark"] {
+  --bg-1: #0b1020;
+  --bg-2: #241a4a;
+  --card: #1e293b;
+  --text: #f1f5f9;
+  --muted: #a3b1c6;
+  --border: #3b4a63;
+  --soft: #131c2e;
+  --accent: #818cf8;
+  --accent-dark: #6366f1;
+  --danger: #fb7185;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, "Segoe UI", Arial, sans-serif;
+  color: var(--text);
+  background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  padding: 20px 14px;
+  transition: color 0.3s;
+}
+
+/* ---------- Main card ---------- */
+.app {
+  width: 100%;
+  max-width: 980px;
+  height: fit-content;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+/* ---------- Header ---------- */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.logo {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #6366f1, #ec4899);
+  box-shadow: 0 6px 14px rgba(99, 102, 241, 0.4);
+}
+.brand h1 { margin: 0; font-size: 1.35rem; letter-spacing: 0.3px; }
+.brand p  { margin: 2px 0 0; font-size: 0.8rem; color: var(--muted); }
+
+.header-actions { display: flex; align-items: center; gap: 10px; }
+
+.nav-link {
+  padding: 8px 14px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text);
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: transform 0.12s, box-shadow 0.15s;
+}
+.nav-link:hover { transform: translateY(-1px); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); }
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  padding: 0;
+}
+
+/* ---------- Toolbar ---------- */
+#toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+  padding: 14px;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.group { display: flex; flex-direction: column; gap: 6px; }
+.group-title {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+
+/* ---------- Buttons ---------- */
+button {
+  font-family: inherit;
+  font-size: 0.88rem;
+  padding: 8px 13px;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.12s, background 0.15s, box-shadow 0.15s;
+}
+button:hover  { transform: translateY(-1px); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); }
+button:active { transform: translateY(0); }
+
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.danger  { color: var(--danger); border-color: var(--danger); }
+.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.primary:hover { background: var(--accent-dark); }
+
+/* Segmented control (Brush / Eraser) */
+.segmented {
+  display: flex;
+  flex-wrap: wrap;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 3px;
+  gap: 3px;
+}
+.segmented button { border: none; background: transparent; box-shadow: none; }
+.segmented button.active {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 3px 8px rgba(99, 102, 241, 0.45);
+}
+
+/* ---------- Brush styles ---------- */
+.styles { display: flex; flex-wrap: wrap; gap: 6px; max-width: 360px; }
+.style-btn { padding: 7px 11px; font-size: 0.82rem; }
+.style-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 3px 8px rgba(99, 102, 241, 0.45);
+}
+
+/* ---------- Color swatches ---------- */
+.colors { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+
+.swatch {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid var(--card);
+  box-shadow: 0 0 0 1px var(--border);
+}
+.swatch.active {
+  box-shadow: 0 0 0 3px var(--accent);
+  transform: scale(1.15);
+}
+
+.custom-color {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid var(--card);
+  box-shadow: 0 0 0 1px var(--border);
+  background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
+  position: relative;
+}
+.custom-color input {
+  position: absolute;
+  inset: -6px;
+  width: 44px;
+  height: 44px;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* ---------- Size control ---------- */
+.size-control { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+input[type="range"] { width: 130px; accent-color: var(--accent); cursor: pointer; }
+
+.badge {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 9px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* Live preview of the brush style: always white, like the paper */
+#stylePreview {
+  width: 120px;
+  height: 46px;
+  background: #fff;
+  border: 1px dashed var(--muted);
+  border-radius: 10px;
+}
+
+/* ---------- Canvas (the paper stays white in night mode) ---------- */
+.paper {
+  padding: 8px;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+#board {
+  display: block;
+  width: 100%;
+  height: 480px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08), 0 6px 18px rgba(0, 0, 0, 0.18);
+  cursor: none;            /* the ring below replaces the cursor */
+  touch-action: none;      /* touch: dragging draws instead of scrolling */
+}
+
+/* ---------- Cursor ring ---------- */
+#cursorRing {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  pointer-events: none;
+  border: 1.5px solid #fff;
+  border-radius: 50%;
+  mix-blend-mode: difference;     /* visible on any color */
+  transform: translate(-50%, -50%);
+  z-index: 50;
+}
+
+/* ---------- Status bar ---------- */
+.statusbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.status-left, .status-right { display: flex; align-items: center; gap: 8px; }
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+}
+.dot.busy { background: #f59e0b; box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.25); }
+
+/* ---------- Toast ---------- */
+#toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translate(-50%, 20px);
+  padding: 10px 18px;
+  background: #0f172a;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  font-size: 0.88rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s;
+  z-index: 100;
+}
+#toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- Small screens ---------- */
+@media (max-width: 600px) {
+  #board { height: 360px; }
+  input[type="range"] { width: 100px; }
+  .app-header { flex-wrap: wrap; }
+}

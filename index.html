@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sketchly - Digital Drawing Board</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="theme.js"></script>  
+</head>
+<body>
+
+  <main class="app">
+
+    <!-- ===== HEADER ===== -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="logo">🎨</div>
+        <div>
+          <h1>Sketchly</h1>
+          <p>Digital Drawing Board </p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a class="nav-link" href="coloring.html">🖍️ Coloring Book</a>
+        <button id="themeBtn" class="icon-btn" title="Switch to night mode">🌙</button>
+      </div>
+    </header>
+
+    <!-- ===== TOOLBAR ===== -->
+    <section id="toolbar">
+
+      <!-- Tools -->
+      <div class="group">
+        <span class="group-title">Tool</span>
+        <div class="segmented">
+          <button id="brushBtn" class="active" title="Brush (B)">✏️ Brush</button>
+          <button id="eraserBtn" title="Eraser (E)">🧽 Delete</button>
+        </div>
+      </div>
+
+      <!-- Brush style -->
+      <div class="group">
+        <span class="group-title">Brush style</span>
+        <div class="styles" id="styleButtons">
+          <button class="style-btn active" data-style="pen"         title="Pen (1)">🖊️ Pen</button>
+          <button class="style-btn"        data-style="marker"      title="Marker (2)">🖍️ Marker</button>
+          <button class="style-btn"        data-style="pencil"      title="Pencil (3)">✏️ Pencil</button>
+          <button class="style-btn"        data-style="spray"       title="Spray (4)">💨 Spray</button>
+          <button class="style-btn"        data-style="calligraphy" title="Calligraphy (5)">🖋️ Calligraphy</button>
+          <button class="style-btn"        data-style="glow"        title="Glow (6)">✨ Glow</button>
+          <button class="style-btn"        data-style="rainbow"     title="Rainbow (7)">🌈 Rainbow</button>
+        </div>
+      </div>
+
+      <!-- Colors -->
+      <div class="group">
+        <span class="group-title">Color</span>
+        <div class="colors">
+          <button class="swatch" data-color="#111111" style="background:#111111" title="Black"></button>
+          <button class="swatch" data-color="#e63946" style="background:#e63946" title="Red"></button>
+          <button class="swatch" data-color="#f77f00" style="background:#f77f00" title="Orange"></button>
+          <button class="swatch" data-color="#ffc300" style="background:#ffc300" title="Yellow"></button>
+          <button class="swatch" data-color="#2a9d4f" style="background:#2a9d4f" title="Green"></button>
+          <button class="swatch" data-color="#2563eb" style="background:#2563eb" title="Blue"></button>
+          <button class="swatch" data-color="#8b5cf6" style="background:#8b5cf6" title="Purple"></button>
+          <button class="swatch" data-color="#ec4899" style="background:#ec4899" title="Pink"></button>
+          <label class="custom-color" title="Pick any color">
+            <input type="color" id="colorPicker" value="#111111">
+          </label>
+        </div>
+      </div>
+
+      <!-- Brush size + live preview of the style -->
+      <div class="group">
+        <span class="group-title">Size</span>
+        <div class="size-control">
+          <input type="range" id="sizeSlider" min="1" max="50" value="5">
+          <span id="sizeValue" class="badge">5 px</span>
+          <canvas id="stylePreview" width="120" height="46" title="Preview of the brush"></canvas>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="group">
+        <span class="group-title">Actions</span>
+        <div class="actions">
+          <button id="undoBtn" title="Undo (Ctrl+Z)">↩️ Undo</button>
+          <button id="clearBtn" class="danger" title="Clear everything">🗑️ Clear</button>
+          <button id="saveBtn" class="primary" title="Save as PNG">💾 Save</button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ===== CANVAS ===== -->
+    <section class="paper">
+      <canvas id="board"></canvas>
+    </section>
+
+    <!-- ===== STATUS BAR ===== -->
+    <footer class="statusbar">
+      <div class="status-left">
+        <span class="dot"></span>
+        <span id="status">Press and hold the mouse button on the canvas to draw.</span>
+      </div>
+      <div class="status-right">
+        <span id="toolInfo" class="badge">Pen</span>
+        <span id="coords" class="badge">x: 0 · y: 0</span>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Ring that follows the mouse and shows the brush size -->
+  <div id="cursorRing"></div>
+
+  <!-- Small pop-up message -->
+  <div id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
